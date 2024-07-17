@@ -44,6 +44,7 @@ class autoNUTES(commands.Cog):
         await choice2.add_roles(role)
         await choice1.send(self.alertMsg)
         await choice2.send(self.alertMsg)
+        self.lastSwitch['last'] == time.mktime(datetime.datetime.now().timetuple()) * 1000
         self.saveJson()
 
         pickle = server.get_member(397573639785938945)
