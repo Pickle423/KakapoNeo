@@ -4,7 +4,7 @@ from nextcord.ext import commands, tasks
 class autoNUTES(commands.Cog):
     def __init__(self, client):
         self.client = client
-        self.guild_id = 911066595311382588
+        self.guild_id = 1262968696956256286
         self.lastSwitch = {'last' : None}
         self.alertMsg = "Congratulations, you have been selected as one of the next two people to have unfettered access to NUTES for two weeks! \n \nHave fun shitposting!"
 
