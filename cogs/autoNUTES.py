@@ -19,7 +19,8 @@ class autoNUTES(commands.Cog):
     # Checking every hour
     @tasks.loop(hours=1)
     async def nutesAssignment(self):
-        server = await self.client.fetch_guild(self.guild_id)
+        server = self.client.get_guild(self.guild_id)
+        print(server)
         members = server.members
         role = nextcord.utils.get(server.roles, name='NUTES')
         nutesmembers = []
