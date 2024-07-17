@@ -4,7 +4,7 @@ from nextcord.ext import commands, tasks
 class autoNUTES(commands.Cog):
     def __init__(self, client):
         self.client = client
-        self.guild_id = 1262968696956256286
+        self.guild_id = 911066595311382588
         self.lastSwitch = {'last' : None}
         self.alertMsg = "Congratulations, you have been selected as one of the next two people to have unfettered access to NUTES for two weeks! \n \nHave fun shitposting!"
 
@@ -24,7 +24,7 @@ class autoNUTES(commands.Cog):
         role = nextcord.utils.get(server.roles, name='NUTES')
         nutesmembers = []
         for member in server.members:
-            if 'NUTES' in member.roles:
+            if member.get_role(role.id):
                 nutesmembers.append(member)
         if self.lastSwitch.get('last') == None:
             print("No NUTES data found, assuming this is first launch of system.")
@@ -37,6 +37,10 @@ class autoNUTES(commands.Cog):
                 return
             for member in nutesmembers:
                 await member.remove_roles(role)
+                members.remove(member)
+        for member in members:
+            if member.id == 1262971867099168899 or member.id == 337756913469095937 or member.id == 397573639785938945:
+                members.remove(member)
         choice1 = members.pop(random.randrange(0, len(members)))
         choice2 = members.pop(random.randrange(0, len(members)))
         await choice1.add_roles(role)
