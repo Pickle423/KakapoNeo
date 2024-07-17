@@ -34,12 +34,12 @@ class FormFeedBack(commands.Cog):
         formButton = Button(label="Feedback", style=nextcord.ButtonStyle.success)
         formButton.callback = formButtonBackend
 
-        async def compButtonBackend(interaction):
-            await self.serveCompForm(interaction, self.autoSlot.findOperationByName(interaction.channel.name.removesuffix(" Feedback")))
-        compButton = Button(label="Concern", style=nextcord.ButtonStyle.danger)
-        compButton.callback = compButtonBackend
+        #async def compButtonBackend(interaction):
+            #await self.serveCompForm(interaction, self.autoSlot.findOperationByName(interaction.channel.name.removesuffix(" Feedback")))
+        #compButton = Button(label="Concern", style=nextcord.ButtonStyle.danger)
+        #compButton.callback = compButtonBackend
         view.add_item(formButton)
-        view.add_item(compButton)
+        #view.add_item(compButton)
 
         await message.edit(view = view)
         return await ctx.response.send_message("Form fixed!", ephemeral=True)
@@ -67,12 +67,13 @@ class FormFeedBack(commands.Cog):
             await interaction.response.send_message("Operation not found, submissions have most likely closed.", delete_after=10)
             return
         await interaction.response.send_modal(FeedbackModal(operationId, self.autoSlot))
-
+    '''
     async def serveCompForm(self, interaction, operationId):
         if operationId == None:
             await interaction.user.send("Operation not found, submissions have most likely closed. \nPlease contact an admin directly about your concern.")
             return
         await interaction.response.send_modal(ComplianceModal(self.client, operationId, self.autoSlot))
+    '''
 
 class FeedbackModal(nextcord.ui.Modal):
     def __init__(self, operationId=None, autoSlot=None):
@@ -84,7 +85,7 @@ class FeedbackModal(nextcord.ui.Modal):
         
         self.autoSlot = autoSlot
 
-        self.webHook = "https://script.google.com/macros/s/AKfycbzTvQGupZo6HolKi9wiGRz5uk-gR4_A2fW1lPc9BH5RJRP6w6VN4TPeGYOVuyomLNlmYw/exec?gid=212667745"
+        self.webHook = "None"
 
         # Currently select options are not supported in modals.
         #self.emEnjRating = nextcord.ui.StringSelect(placeholder = "Your overall enjoyment rating", min_values=1, max_values=1)
@@ -116,7 +117,8 @@ class FeedbackModal(nextcord.ui.Modal):
                 "enjoyment rating" : self.emEnjRating.value, "enjoyment feedback" : self.emEnjFeedback.value, "design rating" : self.emDesignRating.value, 
                 "design feedback" : self.emDesignFeedback.value, "leadership feedback" : self.emLeadershipFeedback.value}
 
-        response = requests.request("POST", self.webHook, data=payload)
+        # DO NOT POST TO OLD SPREADSHEET, ACQUIRE NEW SPREADSHEET
+        #response = requests.request("POST", self.webHook, data=payload)
 
         operativeList = FormFeedBack.feedBackDataBase.get(self.operationId)
 
@@ -141,7 +143,8 @@ class FeedbackModal(nextcord.ui.Modal):
             em.add_field(name="Leadership:", value=self.emLeadershipFeedback.value, inline=False)
         return await interaction.response.send_message(embed=em)
         '''
-
+# No need for a compliance modal at the moment.
+'''
 class ComplianceModal(nextcord.ui.Modal):
     def __init__(self, client, operationId=None, autoSlot=None):
         super().__init__(
@@ -154,7 +157,7 @@ class ComplianceModal(nextcord.ui.Modal):
         self.autoSlot = autoSlot
 
         # Currently the sample sheet webhook
-        self.webHook = "https://script.google.com/macros/s/AKfycbyfUp4lJysAim4x01imm1XGFNjl6dadwWK6J68n9Yghi8tukpRTE7B_eYsNRj05atKGPQ/exec?gid=1333545752"
+        self.webHook = "None"
 
         # Currently select options are not supported in modals.
         #self.emEnjRating = nextcord.ui.StringSelect(placeholder = "Your overall enjoyment rating", min_values=1, max_values=1)
@@ -194,6 +197,7 @@ class ComplianceModal(nextcord.ui.Modal):
         await notifChannel.send(embed=notifEm)
 
         return await interaction.followup.send("Concern submitted", delete_after=5, ephemeral=True)
-    
+'''
+
 def setup(client):
     client.add_cog(FormFeedBack(client))

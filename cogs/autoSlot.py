@@ -549,12 +549,13 @@ class autoSlot(commands.Cog):
         formButton = Button(label="Feedback", style=nextcord.ButtonStyle.success)
         formButton.callback = formButtonBackend
 
-        async def compButtonBackend(interaction):
-            await self.FormFeedBack.serveCompForm(interaction, self.findOperationByName(interaction.channel.name.removesuffix(" Feedback")))
-        compButton = Button(label="Concern", style=nextcord.ButtonStyle.danger)
-        compButton.callback = compButtonBackend
+        # Compliance Concerns suspended.
+        #async def compButtonBackend(interaction):
+            #await self.FormFeedBack.serveCompForm(interaction, self.findOperationByName(interaction.channel.name.removesuffix(" Feedback")))
+        #compButton = Button(label="Concern", style=nextcord.ButtonStyle.danger)
+        #compButton.callback = compButtonBackend
         view.add_item(formButton)
-        view.add_item(compButton)
+        #view.add_item(compButton)
         # If there is a squad leader on the roster, they will be mentioned along with the host in the first message /visible/ in the channel by the time anyone gets to it.
         # (Since the silentping message was already deleted by this point.)
         # The commented out portion is the old method.
