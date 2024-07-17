@@ -10,8 +10,10 @@ class autoNUTES(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        #Read the pre-existing activity JSON
-        self.lastSwitch = self.loadJson()
+        #Read the pre-existing activity JSON  
+        lastSwitch = self.loadJson()
+        if lastSwitch != None:
+            self.lastSwitch = lastSwitch
         await self.nutesAssignment.start()
 
     # Checking every hour
