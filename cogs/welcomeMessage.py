@@ -12,8 +12,6 @@ class WelcomeMessage(commands.Cog):
         global welcomemessagechannel
         channel = nextcord.utils.get(member.guild.text_channels, name="lobby")
         server = member.guild
-        sag = server.get_member(68019210814500864)
-        ryder = server.get_member(397573639785938945)
         await channel.send(f"Yo. {member.mention}")
 
 def setup(client):

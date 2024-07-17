@@ -146,13 +146,15 @@ class miscCommands(commands.Cog):
     @commands.command()
     async def loa(self, ctx, target=None):
         if target:
-            if (len([x for x in ctx.author.roles if x in ["Operations Command", "Command Consultant"]]) > 0):
+            #if (len([x for x in ctx.author.roles if x in ["Operations Command", "Command Consultant"]]) > 0):
+            if "Operations Command" not in ctx.author.roles:
                 return await ctx.send(f'{ctx.author.mention} is not an admin. Only admins can assign others LOA.')
             target = ctx.guild.get_member(int(target.translate({ord(i): None for i in '@<>'})))
         else:
             target = ctx.author
 
-        roleId = 464175395651190805
+        # 1262968697027432476 = SESO Gaming LOA ID
+        roleId = 1262968697027432476
         if target.get_role(roleId):
             await target.remove_roles(ctx.guild.get_role(roleId))
             return await ctx.send(f"{target.mention} is now off LOA, welcome back!")
