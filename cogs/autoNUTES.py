@@ -24,14 +24,14 @@ class autoNUTES(commands.Cog):
         for member in server.members:
             if 'NUTES' in member.roles:
                 nutesmembers.append(member)
-        if self.lastSwitch['last'] == None:
+        if self.lastSwitch.get('last') == None:
             print("No NUTES data found, assuming this is first launch of system.")
         elif len(nutesmembers) == 0:
             print("No members with the NUTES role found, assuming reset or first launch of system.")
         else:
             ms = datetime.datetime.now()
             timems = (time.mktime(ms.timetuple()) * 1000)
-            if timems - self.lastSwitch['last'] < 1209600000:
+            if timems - self.lastSwitch.get('last') < 1209600000:
                 return
             for member in nutesmembers:
                 await member.remove_roles(role)
