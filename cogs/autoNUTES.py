@@ -47,7 +47,7 @@ class autoNUTES(commands.Cog):
         self.saveJson()
 
         pickle = server.get_member(397573639785938945)
-        pickle.send(f"The current NUTES-assigned people are: {choice1.mention} and {choice2.mention}.")
+        await pickle.send(f"The current NUTES-assigned people are: {choice1.mention} and {choice2.mention}.")
     
     def loadJson(self):
         if os.path.exists('nutes.json'):
