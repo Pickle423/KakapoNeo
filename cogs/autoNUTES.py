@@ -4,7 +4,7 @@ from nextcord.ext import commands, tasks
 class autoNUTES(commands.Cog):
     def __init__(self, client):
         self.client = client
-        self.guild_id = 1262968696956256286
+        self.guild_id = 911066595311382588
         self.lastSwitch = {'last' : None}
         self.alertMsg = "Congratulations, you have been selected as one of the next two people to have unfettered access to NUTES for two weeks! \n \nHave fun shitposting!"
 
@@ -20,7 +20,6 @@ class autoNUTES(commands.Cog):
     @tasks.loop(hours=1)
     async def nutesAssignment(self):
         server = self.client.get_guild(self.guild_id)
-        print(server)
         members = server.members
         role = nextcord.utils.get(server.roles, name='NUTES')
         nutesmembers = []
@@ -44,10 +43,10 @@ class autoNUTES(commands.Cog):
         await choice2.add_roles(role)
         await choice1.send(self.alertMsg)
         await choice2.send(self.alertMsg)
-        self.lastSwitch['last'] == time.mktime(datetime.datetime.now().timetuple()) * 1000
+        self.lastSwitch.update({'last' : time.mktime(datetime.datetime.now().timetuple()) * 1000})
         self.saveJson()
 
-        pickle = server.get_member(397573639785938945)
+        pickle = server.get_member(267469338557153300)
         await pickle.send(f"The current NUTES-assigned people are: {choice1.mention} and {choice2.mention}.")
     
     def loadJson(self):
