@@ -139,7 +139,10 @@ class Music(commands.Cog):
 
         else:
             vc: wavelink.Player = ctx.guild.voice_client
-            await vc.pause(not vc.paused)
+            if vc != None:
+                await vc.pause(not vc.paused)
+            else:
+                return await ctx.followup.send("Please join a VC first!")
             if vc.current == None or vc.current.title == None:
                 await ctx.followup.send("Trouble encountered resuming, no title found.")
                 return
