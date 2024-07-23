@@ -166,7 +166,7 @@ class Music(commands.Cog):
     async def pause(self, ctx):
         vc: wavelink.Player = ctx.guild.voice_client
         await vc.pause(not vc.paused)
-        await ctx.response.send_message("Audio paused!")
+        await ctx.response.send_message("Audio paused/unpased!")
 
     @nextcord.slash_command(name='stop',description="Stop the bot playing entirely, this will clear the queue")
     async def stop(self, ctx):
