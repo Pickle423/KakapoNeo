@@ -146,7 +146,7 @@ class Music(commands.Cog):
             if vc.current == None or vc.current.title == None:
                 await ctx.followup.send("Trouble encountered resuming, no title found.")
                 return
-            await ctx.followup.send(f'**Resumed:** `{vc.current.title}`')
+            await ctx.followup.send(f'**Resumed/Paused:** `{vc.current.title}`')
     
     @nextcord.slash_command(name='skip',description="Skip a song")
     async def skip(self, ctx):
@@ -166,7 +166,7 @@ class Music(commands.Cog):
     async def pause(self, ctx):
         vc: wavelink.Player = ctx.guild.voice_client
         await vc.pause(not vc.paused)
-        await ctx.response.send_message("Audio paused/unpased!")
+        await ctx.response.send_message("Audio paused/unpaused!")
 
     @nextcord.slash_command(name='stop',description="Stop the bot playing entirely, this will clear the queue")
     async def stop(self, ctx):
