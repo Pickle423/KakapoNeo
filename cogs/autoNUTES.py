@@ -33,7 +33,7 @@ class autoNUTES(commands.Cog):
         else:
             ms = datetime.datetime.now()
             timems = (time.mktime(ms.timetuple()) * 1000)
-            if timems - self.lastSwitch.get('last') < 1209600000:
+            if timems - self.lastSwitch.get('last') < 345600000:
                 return
             for member in nutesmembers:
                 await member.remove_roles(role)
