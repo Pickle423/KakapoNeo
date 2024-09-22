@@ -6,7 +6,7 @@ class autoNUTES(commands.Cog):
         self.client = client
         self.guild_id = 1262968696956256286
         self.lastSwitch = {'last' : None}
-        self.alertMsg = "Congratulations, you have been selected as one of the next two people to have unfettered access to NUTES for two weeks! \n \nHave fun shitposting!"
+        self.alertMsg = "Congratulations, you have been selected as one of the next two people to have unfettered access to NUTES for four days! \n \nHave fun shitposting!"
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -38,7 +38,8 @@ class autoNUTES(commands.Cog):
             for member in nutesmembers:
                 await member.remove_roles(role)
                 members.remove(member)
-        for member in members:
+        # Iterate through a copy of the members list just to make sure we don't get an angry list loop
+        for member in members.copy():
             if member.id == 1262971867099168899 or member.id == 337756913469095937 or member.id == 397573639785938945:
                 members.remove(member)
         choice1 = members.pop(random.randrange(0, len(members)))
