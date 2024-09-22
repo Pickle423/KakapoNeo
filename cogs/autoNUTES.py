@@ -1,6 +1,6 @@
 import nextcord, datetime, time, json, os, random
 from nextcord.ext import commands, tasks
-#gifFilter Cog
+#autoNutes Cog
 class autoNUTES(commands.Cog):
     def __init__(self, client):
         self.client = client
