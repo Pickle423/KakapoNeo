@@ -13,7 +13,6 @@ class gifFilter(commands.Cog):
         await self.expireAudit()
 
         exception_channels = [nextcord.utils.get(message.guild.text_channels, name="voice-chat"),nextcord.utils.get(message.guild.text_channels, name="nsfw-memes-no-porn"),nextcord.utils.get(message.guild.text_channels, name="bot-commands")]
-        
 
         if message.channel.id in self.quarantined.keys() and message.channel not in exception_channels:
             await self.filterChannel(message)
