@@ -56,7 +56,7 @@ class autoNUTES(commands.Cog):
         channel = await self.client.fetch_channel(1262971002703446046)
 
         # Messages since 48 hours ago, this number is lower as it's measured in seconds rather than milliseconds
-        for msg in channel.history(after=datetime.datetime.fromtimestamp(time.time() - 172800)):
+        async for msg in channel.history(after=datetime.datetime.fromtimestamp(time.time() - 172800)):
             for member in nutesmembers:
                 if msg.author.id == member.id: postCount += 1
 
