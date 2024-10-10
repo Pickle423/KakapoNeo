@@ -29,7 +29,7 @@ class gifFilter(commands.Cog):
 
         eventCount = 0
 
-        for event in self.spamEvents.keys():
+        for event in self.spamEvents.keys().copy():
             # Clean up spamEvents, so we don't have a list that gets ever larger
             if (currentTime - event) > 30000:
                 self.spamEvents.pop(event, None)
