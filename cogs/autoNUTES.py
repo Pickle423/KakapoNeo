@@ -40,7 +40,7 @@ class autoNUTES(commands.Cog):
                 return
             # If it has two days, and this cycle has not been approved yet, we'll check if the selected members
             # have been active enough
-            elif timems - self.lastSwitch.get('last') > 172800000 and timems - self.lastSwitch.get('last') < 345600000:
+            if timems - self.lastSwitch.get('last') > 172800000 and timems - self.lastSwitch.get('last') < 345600000:
                 await self.checkMemberActivity(nutesmembers)
                 if self.cycleApproved: return
             for member in nutesmembers:
