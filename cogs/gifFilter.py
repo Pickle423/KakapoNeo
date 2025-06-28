@@ -16,7 +16,6 @@ class gifFilter(commands.Cog):
             return
 
         exception_channels = [nextcord.utils.get(message.guild.text_channels, name="voice-chat"),nextcord.utils.get(message.guild.text_channels, name="nsfw-memes-no-porn"),nextcord.utils.get(message.guild.text_channels, name="bot-commands")]
-        
 
         if message.channel.id in self.quarantined.keys() and message.channel not in exception_channels:
             await self.filterChannel(message)
@@ -33,7 +32,11 @@ class gifFilter(commands.Cog):
 
         eventCount = 0
 
-        for event in self.spamEvents.keys():
+        for event in dict.fromkeys(self.spamEvents.keys()):
+            # Clean up spamEvents, so we don't have a list that gets ever larger
+            if (currentTime - event) > 30000:
+                self.spamEvents.pop(event, None)
+                continue
             if (self.spamEvents.get(event) == message.channel.id) and (currentTime - event) <= 30000:
                 eventCount = eventCount + 1
         
