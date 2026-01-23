@@ -4,7 +4,7 @@ server: # REST and WS server
 lavalink:
   plugins:
     # Replace VERSION with the current version as shown by the Releases tab or a long commit hash for snapshots.
-    - dependency: "dev.lavalink.youtube:youtube-plugin:1.13.3"
+    - dependency: "dev.lavalink.youtube:youtube-plugin:1.16.0"
       snapshot: false # Set to true if you want to use a snapshot version.
   server:
     password: "yoyoyo, it's me! mario!"
@@ -40,7 +40,6 @@ plugins:
     # Clients are queried in the order they are given (so the first client is queried first and so on...)
     clients:
       - MUSIC
-      - ANDROID_VR
       - WEB
       - WEBEMBEDDED 
     oauth:
