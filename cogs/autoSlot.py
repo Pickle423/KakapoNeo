@@ -163,9 +163,14 @@ class autoSlot(commands.Cog):
             view.add_item(rslotbutton)
             
 
-        # If previous roster exists, edit it with the embed_roster_message
-        if await roster_channel.history().get(author__id = self.client.user.id):
-            previous_roster_message = await roster_channel.history().get(author__id = self.client.user.id)
+       # If previous roster exists, edit it with the embed_roster_message
+        previous_roster_message = None
+        async for message in roster_channel.history(limit=200):
+            if message.author == self.client.user:
+                previous_roster_message = message
+                break
+
+        if previous_roster_message:
             await previous_roster_message.edit(embed=embed_roster_message, view=view)
         # Else, just send the embed_roster_message
         else:
@@ -260,9 +265,14 @@ class autoSlot(commands.Cog):
             return await botCommandsChannel.send("No channel can be found for this operation can be found. Have roles been added yet?")
 
         # Edit embed 
-        roster_channel = nextcord.utils.get(ctx.guild.channels, name=f"{operation_id}-{self.database['operations'][operation_id]['channel_name']}", category=self.roster_category)
-        message = await roster_channel.history().get(author__id = self.client.user.id)
-        await message.edit(embed=self.embedGroupsToRoster(ctx, operation_id, group_list))
+        roster_channel = nextcord.utils.get(ctx.guild.channels, name=f"{operation_id}-{self.database[str(ctx.guild_id)]['operations'][operation_id]['channel_name']}", category=roster_category)
+        previous_roster_message = None
+        async for message in roster_channel.history(limit=200):
+            if message.author == self.client.user:
+                previous_roster_message = message
+                break
+
+        await previous_roster_message.edit(embed=self.embedGroupsToRoster(ctx, operation_id, group_list))
         self.saveData()
 
         # Notify user
@@ -324,9 +334,15 @@ class autoSlot(commands.Cog):
             return await botCommandsChannel.send("No channel can be found for this operation can be found. Have roles been added yet?")
 
         # Edit embed 
-        roster_channel = nextcord.utils.get(ctx.guild.channels, name=f"{operation_id}-{self.database['operations'][operation_id]['channel_name']}", category=self.roster_category)
-        message = await roster_channel.history().get(author__id = self.client.user.id)
-        await message.edit(embed=self.embedGroupsToRoster(ctx, operation_id, group_list))
+        # Edit embed 
+        roster_channel = nextcord.utils.get(ctx.guild.channels, name=f"{operation_id}-{self.database[str(ctx.guild_id)]['operations'][operation_id]['channel_name']}", category=roster_category)
+        previous_roster_message = None
+        async for message in roster_channel.history(limit=200):
+            if message.author == self.client.user:
+                previous_roster_message = message
+                break
+
+        await previous_roster_message.edit(embed=self.embedGroupsToRoster(ctx, operation_id, group_list))
         self.saveData()
 
         # Notify user
@@ -395,9 +411,14 @@ class autoSlot(commands.Cog):
             return await botCommandsChannel.send("No channel for this operation can be found. Have roles been added yet?")
         
         # Edit embed 
-        roster_channel = nextcord.utils.get(ctx.guild.channels, name=f"{operation_id}-{self.database['operations'][operation_id]['channel_name']}", category=self.roster_category)
-        message = await roster_channel.history().get(author__id = self.client.user.id)
-        await message.edit(embed=self.embedGroupsToRoster(ctx, operation_id, group_list))
+        roster_channel = nextcord.utils.get(ctx.guild.channels, name=f"{operation_id}-{self.database[str(ctx.guild_id)]['operations'][operation_id]['channel_name']}", category=roster_category)
+        previous_roster_message = None
+        async for message in roster_channel.history(limit=200):
+            if message.author == self.client.user:
+                previous_roster_message = message
+                break
+
+        await previous_roster_message.edit(embed=self.embedGroupsToRoster(ctx, operation_id, group_list))
         self.saveData()
 
         # Notify user
@@ -444,9 +465,14 @@ class autoSlot(commands.Cog):
             return await botCommandsChannel.send("No channel for this operation can be found. Have roles been added yet?")
         
         # Edit embed 
-        roster_channel = nextcord.utils.get(ctx.guild.channels, name=f"{operation_id}-{self.database['operations'][operation_id]['channel_name']}", category=self.roster_category)
-        message = await roster_channel.history().get(author__id = self.client.user.id)
-        await message.edit(embed=self.embedGroupsToRoster(ctx, operation_id, group_list))
+        roster_channel = nextcord.utils.get(ctx.guild.channels, name=f"{operation_id}-{self.database[str(ctx.guild_id)]['operations'][operation_id]['channel_name']}", category=roster_category)
+        previous_roster_message = None
+        async for message in roster_channel.history(limit=200):
+            if message.author == self.client.user:
+                previous_roster_message = message
+                break
+
+        await previous_roster_message.edit(embed=self.embedGroupsToRoster(ctx, operation_id, group_list))
         self.saveData()
 
         # Notify user
@@ -494,9 +520,14 @@ class autoSlot(commands.Cog):
             return await botCommandsChannel.send("No channel can be found for this operation can be found. Have roles been added yet?")
 
         # Edit embed 
-        roster_channel = nextcord.utils.get(ctx.guild.channels, name=f"{operation_id}-{self.database['operations'][operation_id]['channel_name']}", category=self.roster_category)
-        message = await roster_channel.history().get(author__id = self.client.user.id)
-        await message.edit(embed=self.embedGroupsToRoster(ctx, operation_id, group_list))
+        roster_channel = nextcord.utils.get(ctx.guild.channels, name=f"{operation_id}-{self.database[str(ctx.guild_id)]['operations'][operation_id]['channel_name']}", category=roster_category)
+        previous_roster_message = None
+        async for message in roster_channel.history(limit=200):
+            if message.author == self.client.user:
+                previous_roster_message = message
+                break
+
+        await previous_roster_message.edit(embed=self.embedGroupsToRoster(ctx, operation_id, group_list))
         self.saveData()
 
         # Notify user
