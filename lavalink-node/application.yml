@@ -39,13 +39,19 @@ plugins:
     # The clients to use for track loading. See below for a list of valid clients.
     # Clients are queried in the order they are given (so the first client is queried first and so on...)
     clients:
-      - MUSIC
-      - WEB
-      - WEBEMBEDDED 
+      - "TV"
+      - "TVHTML5EMBEDDED"
+      - "ANDROID_VR"
+      - "WEB"
+      - "MWEB"
+      - "WEBEMBEDDED"
+      - "MUSIC"
+      - "ANDROID_MUSIC"
+      - "IOS" 
     oauth:
       # setting "enabled: true" is the bare minimum to get OAuth working.
       enabled: true
-      refreshToken: "REPLACE WITH REFRESH TOKEN"
+      refreshToken: ""
 
 metrics:
   prometheus:
